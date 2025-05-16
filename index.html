@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mahalo Poké - Menú Especial para Zahra</title>
+  <title>Mahalo Poké - Menú Especial para Fati</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Dancing+Script:wght@700&display=swap');
     body {
@@ -247,12 +247,77 @@
       background: #c2185b;
       transform: scale(1.05);
     }
+    
+    /* Botón de disculpa */
+    .btn-apology {
+      display: inline-block;
+      background-color: #FF9800;
+      color: white;
+      text-decoration: none;
+      padding: 11px 28px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 1em;
+      box-shadow: 0 5px 12px rgba(255, 152, 0, 0.4);
+      transition: all 0.3s ease;
+      margin-right: 12px;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+      animation: pulse 2s infinite;
+    }
+    
+    .btn-apology:hover {
+      background-color: #F57C00;
+      transform: scale(1.05);
+      box-shadow: 0 7px 16px rgba(255, 152, 0, 0.6);
+    }
+    
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    
+    /* Popup de disculpa */
+    .apology-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 320px;
+      max-width: 90vw;
+      background: #fff8e1;
+      border: 3px solid #FF9800;
+      color: #E65100;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(255,152,0,0.6);
+      padding: 2em;
+      font-size: 1.1em;
+      font-weight: 600;
+      text-align: center;
+      transform: translate(-50%, -50%);
+      z-index: 1100;
+      animation: popupFadeIn 0.5s ease forwards;
+    }
   </style>
 </head>
 <body>
   <div class="hero"></div>
   <div class="container">
-    <p class="intro">Zahra, este menú es solo una excusa para sacarte una sonrisa y arreglar la mala fama... ¿te animas a probarlo conmigo?</p>
+    <p class="intro">Fati, este menú es solo una excusa para sacarte una sonrisa y arreglar la mala fama... ¿te animas a probarlo conmigo?</p>
+    
+    <!-- Botón de disculpa especial -->
+    <div style="text-align: center; margin-bottom: 2em;">
+      <button class="btn-apology" onclick="mostrarDisculpa()">⚠️ Click aquí si estás enfadada ⚠️</button>
+    </div>
+    
     <div class="menu-section">
       <div class="dish">
         <img src="https://mahalopoke.es/wp-content/uploads/2022/10/202301_500px500px_Mahalo-Bowls_MahaloPoke.png" alt="Explosión de Sonrisas" />
@@ -306,12 +371,37 @@
 
   <!-- Popup carta romántica -->
   <div id="cartaPopup" class="popup-message">
-    <div style="font-size: 1.5em; margin-bottom: 0.5em;">✨ Para Zahra ✨</div>
+    <div style="font-size: 1.5em; margin-bottom: 0.5em;">✨ Para Fati ✨</div>
     <div style="margin-bottom: 1em;">
      Tus ojos tienen esa magia que no se explica... solo se siente ✨💫
     <br><br>
     </div>
     <button class="close-btn" onclick="cerrarCarta()">Cerrar</button>
+  </div>
+
+  <!-- Popup de disculpa -->
+  <div id="apologyPopup" class="apology-popup">
+    <div style="font-size: 1.3em; margin-bottom: 0.5em;">🙏 Disculpa Oficial 🙏</div>
+    <div style="margin-bottom: 1em;">
+      Solo confundí tu nombre, no tus ojazos 👀✨... ¿aceptas mis disculpas con un poke?<br><br>
+      Si me das otra oportunidad, prometo aprenderme tu nombre, tu postre favorito... y hasta tu horóscopo 😇<br><br>
+    </div>
+ <button class="close-btn" onclick="aceptarDisculpa()" style="background-color: #FF9800;">Aceptar disculpa</button>
+
+<script>
+function aceptarDisculpa() {
+  // Cierra el popup de disculpa
+  cerrarDisculpa();
+  
+  // Abre WhatsApp con mensaje preescrito simplificado
+  window.open('https://wa.me/34617793247?text=✅%20Acepto%20tu%20disculpa%20Aimane%20😊', '_blank');
+}
+
+function cerrarDisculpa() {
+  const disculpa = document.getElementById('apologyPopup');
+  disculpa.style.display = 'none';
+}
+</script>
   </div>
 
   <div class="footer">
@@ -327,6 +417,17 @@
     function cerrarCarta() {
       const carta = document.getElementById('cartaPopup');
       carta.style.display = 'none';
+    }
+    
+    function mostrarDisculpa() {
+      const disculpa = document.getElementById('apologyPopup');
+      disculpa.style.display = 'block';
+      lanzarMagia();
+    }
+    
+    function cerrarDisculpa() {
+      const disculpa = document.getElementById('apologyPopup');
+      disculpa.style.display = 'none';
     }
 
     function lanzarMagia() {
