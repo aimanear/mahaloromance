@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mahalo Poké - Menú Especial para Zahra</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Dancing+Script:wght@700&display=swap');
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #fafafa;
+      color: #4b4f58;
+      line-height: 1.6;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+    .hero {
+      background: url('https://mahalopoke.es/wp-content/uploads/2023/02/poke-menu-mahalo-poke-scaled.jpg') no-repeat center center;
+      background-size: cover;
+      height: 400px;
+      border-bottom: 1px solid #ddd;
+      position: relative;
+    }
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 2em 1.5em;
+    }
+    p.intro {
+      text-align: center;
+      font-size: 1.1em;
+      margin-bottom: 2em;
+      font-style: italic;
+      color: #4b4f58;
+    }
+    .menu-section {
+      margin-bottom: 3em;
+    }
+    .dish {
+      background: #fff;
+      border-radius: 12px;
+      border-left: 5px solid #0170B9;
+      padding: 1.2em 1.5em;
+      margin-bottom: 2.2em;
+      display: flex;
+      gap: 1.2em;
+      align-items: center;
+      box-shadow: 0 3px 8px rgb(0 0 0 / 0.05);
+      transition: all 0.3s ease;
+    }
+    .dish:hover {
+      box-shadow: 0 8px 18px rgb(0 0 0 / 0.12);
+      transform: translateY(-5px);
+    }
+    .dish img {
+      width: 120px;
+      height: 120px;
+      border-radius: 12px;
+      object-fit: cover;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+      transition: transform 0.3s ease;
+    }
+    .dish:hover img {
+      transform: scale(1.05) rotate(2deg);
+    }
+    .dish-content {
+      flex: 1;
+    }
+    .dish-title {
+      font-weight: 600;
+      font-size: 1.3em;
+      color: #0170B9;
+      margin-bottom: 0.35em;
+      letter-spacing: 0.02em;
+    }
+    .dish-desc {
+      font-size: 1em;
+      margin-bottom: 0.8em;
+      color: #4b4f58;
+      line-height: 1.4;
+    }
+    .btn-whatsapp, button.btn-whatsapp {
+      display: inline-block;
+      background-color: #25D366;
+      color: white;
+      text-decoration: none;
+      padding: 11px 28px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 1em;
+      box-shadow: 0 5px 12px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s ease;
+      margin-right: 12px;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+    }
+    .btn-whatsapp:hover, button.btn-whatsapp:hover {
+      background-color: #1ebe57;
+      transform: scale(1.05);
+      box-shadow: 0 7px 16px rgba(37, 211, 102, 0.6);
+    }
+    .btn-atardecer {
+      display: block;
+      max-width: 400px;
+      margin: 2em auto 0;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .btn-atardecer:hover {
+      box-shadow: 0 12px 28px rgba(0,0,0,0.3);
+      transform: scale(1.02);
+    }
+    .btn-atardecer img {
+      width: 100%;
+      display: block;
+      border-radius: 16px;
+      filter: brightness(95%);
+      transition: filter 0.3s ease;
+    }
+    .btn-atardecer:hover img {
+      filter: brightness(110%);
+    }
+    .footer {
+      text-align: center;
+      padding: 2em 1em;
+      background-color: #f8f8f8;
+      color: #777;
+      font-size: 0.95em;
+      letter-spacing: 0.02em;
+      border-top: 1px solid #ddd;
+      font-style: italic;
+    }
+    /* Popup carta romántica */
+    .popup-message {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 320px;
+      max-width: 90vw;
+      background: #fff0f6;
+      border: 3px solid #e91e63;
+      color: #c2185b;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(233,30,99,0.6);
+      padding: 2em;
+      font-size: 1.2em;
+      font-weight: 600;
+      text-align: center;
+      font-family: 'Dancing Script', cursive;
+      transform: translate(-50%, -50%);
+      z-index: 1100;
+      animation: popupFadeIn 0.5s ease forwards;
+    }
+    @keyframes popupFadeIn {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -60%) scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+    
+    /* Animación de confeti y estrellas */
+    .confetti-container {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 9999;
+      overflow: hidden;
+    }
+    
+    .confetti {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      opacity: 0;
+      animation: confetti-fall 5s linear forwards;
+    }
+    
+    .star {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: gold;
+      clip-path: polygon(
+        50% 0%, 61% 35%, 98% 35%, 68% 57%, 
+        79% 91%, 50% 70%, 21% 91%, 32% 57%, 
+        2% 35%, 39% 35%
+      );
+      opacity: 0;
+      animation: star-fall 4s linear forwards;
+    }
+    
+    @keyframes confetti-fall {
+      0% {
+        transform: translateY(-100px) rotate(0deg) rotateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg) rotateY(720deg);
+        opacity: 0;
+      }
+    }
+    
+    @keyframes star-fall {
+      0% {
+        transform: translateY(-100px) rotate(0deg) scale(0.5);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+        transform: translateY(0) rotate(180deg) scale(1);
+      }
+      100% {
+        transform: translateY(100vh) rotate(720deg) scale(1);
+        opacity: 0;
+      }
+    }
+    
+    .close-btn {
+      background: #e91e63;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 0.5em 1.5em;
+      cursor: pointer;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      margin-top: 1em;
+      transition: all 0.3s ease;
+    }
+    
+    .close-btn:hover {
+      background: #c2185b;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="hero"></div>
+  <div class="container">
+    <p class="intro">Zahra, este menú es solo una excusa para sacarte una sonrisa y arreglar la mala fama... ¿te animas a probarlo conmigo?</p>
+    <div class="menu-section">
+      <div class="dish">
+        <img src="https://mahalopoke.es/wp-content/uploads/2022/10/202301_500px500px_Mahalo-Bowls_MahaloPoke.png" alt="Explosión de Sonrisas" />
+        <div class="dish-content">
+          <div class="dish-title">Explosión de Sonrisas</div>
+          <div class="dish-desc">Frescura y alegría en cada bocado, como la chispa que siento cuando hablamos.</div>
+          <a href="https://wa.me/34617793247?text=Hola%2C%20este%20plato%20me%20ha%20hecho%20sonre%C3%ADr.%20Te%20devuelvo%20la%20sonrisa%20Aimane%20%F0%9F%98%8A" class="btn-whatsapp" target="_blank">Pedir este plato</a>
+        </div>
+      </div>
+      <div class="dish">
+        <img src="https://mahalopoke.es/wp-content/uploads/2023/04/Teriyaki-1043x1043-1.webp" alt="Dulce Curiosidad" />
+        <div class="dish-content">
+          <div class="dish-title">Dulce Curiosidad</div>
+          <div class="dish-desc">Un toque dulce y especiado, perfecto para conversaciones con sabor a aventura.</div>
+          <a href="https://wa.me/34617793247?text=Este%20plato%20despert%C3%B3%20mi%20curiosidad.%20Estoy%20lista%20para%20saber%20m%C3%A1s%20de%20ti%2C%20Aimane.%20%F0%9F%98%8F" class="btn-whatsapp" target="_blank">Pedir este plato</a>
+        </div>
+      </div>
+      <div class="dish">
+        <img src="https://mahalopoke.es/wp-content/uploads/2022/10/POKE-CARTA-MAHALO-POKE-CARTA-SPYCI-BRO.png" alt="Sabor Pícaro" />
+        <div class="dish-content">
+          <div class="dish-title">Sabor Pícaro</div>
+          <div class="dish-desc">Un poco de picante para animar la charla y despertar sonrisas inesperadas.</div>
+          <a href="https://wa.me/34617793247?text=Este%20picante%20me%20sorprendio.%20Confieso%2C%20Aimane%2C%20que%20me%20est%C3%A1s%20sorprendiendo%20mucho." class="btn-whatsapp" target="_blank">Pedir este plato</a>
+        </div>
+      </div>
+      
+      <!-- Botón Postre -->
+      <div class="dish">
+        <img src="https://mahalopoke.es/wp-content/uploads/2024/01/yogurt-frutas-mahalo-2048x2048.png" alt="Postre Romántico" />
+        <div class="dish-content">
+          <div class="dish-title">Postre Especial</div>
+          <div class="dish-desc">Tus ojos y el atardecer… el final más dulce que se me ocurre.</div>
+          <button class="btn-whatsapp" onclick="lanzarMagia()">Disfrutar Postre</button>
+        </div>
+      </div>
+
+      <!-- Botón Mirada Hipnotizante -->
+      <div class="dish">
+        <img src="https://i.pinimg.com/736x/ff/40/f0/ff40f09b45db8ef8c417af16522214d6.jpg" alt="Mirada Hipnotizante" />
+        <div class="dish-content">
+          <div class="dish-title">Mirada Hipnotizante</div>
+          <div class="dish-desc">Algunos ingredientes no se pueden describir... como tus ojos.</div>
+          <button class="btn-whatsapp" onclick="mostrarCarta()">Ver Mensaje</button>
+        </div>
+      </div>
+    </div>
+    <a href="https://youtu.be/VBiNZcH27Y8?si=Z56Du2pTdsQv3Slk" target="_blank" class="btn-atardecer">
+      <img src="https://media.traveler.es/photos/61376371fd8ea62e2db30c5c/4:3/w_2100,h_1575,c_limit/189076.jpg" alt="Atardecer Bonito" />
+    </a>
+  </div>
+
+  <!-- Popup carta romántica -->
+  <div id="cartaPopup" class="popup-message">
+    <div style="font-size: 1.5em; margin-bottom: 0.5em;">✨ Para Zahra ✨</div>
+    <div style="margin-bottom: 1em;">
+     Tus ojos tienen esa magia que no se explica... solo se siente ✨💫
+    <br><br>
+    </div>
+    <button class="close-btn" onclick="cerrarCarta()">Cerrar</button>
+  </div>
+
+  <div class="footer">
+    Este menú es solo el comienzo. ¿Nos damos la oportunidad de descubrir juntos lo que sigue? 🌊
+  </div>
+
+  <script>
+    function mostrarCarta() {
+      const carta = document.getElementById('cartaPopup');
+      carta.style.display = 'block';
+    }
+    
+    function cerrarCarta() {
+      const carta = document.getElementById('cartaPopup');
+      carta.style.display = 'none';
+    }
+
+    function lanzarMagia() {
+      const container = document.createElement('div');
+      container.className = 'confetti-container';
+      document.body.appendChild(container);
+      
+      const colors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4CAF50', '#8BC34A', '#CDDC39', '#FFEB3B', '#FFC107', '#FF9800', '#FF5722'];
+      
+      // Crear confeti
+      for (let i = 0; i < 120; i++) {
+        setTimeout(() => {
+          const confetti = document.createElement('div');
+          confetti.className = 'confetti';
+          confetti.style.left = Math.random() * 100 + 'vw';
+          confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+          confetti.style.width = (Math.random() * 10 + 8) + 'px';
+          confetti.style.height = (Math.random() * 10 + 8) + 'px';
+          container.appendChild(confetti);
+        }, i * 30);
+      }
+      
+      // Crear estrellas
+      for (let i = 0; i < 60; i++) {
+        setTimeout(() => {
+          const star = document.createElement('div');
+          star.className = 'star';
+          star.style.left = Math.random() * 100 + 'vw';
+          star.style.animationDuration = (Math.random() * 3 + 3) + 's';
+          star.style.animationDelay = (Math.random() * 0.5) + 's';
+          star.style.width = (Math.random() * 15 + 12) + 'px';
+          star.style.height = (Math.random() * 15 + 12) + 'px';
+          container.appendChild(star);
+        }, i * 50);
+      }
+      
+      // Eliminar después de la animación
+      setTimeout(() => {
+        document.body.removeChild(container);
+      }, 6000);
+    }
+  </script>
+</body>
+</html>
