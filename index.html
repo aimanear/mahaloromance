@@ -83,7 +83,7 @@
     }
     .btn-whatsapp, button.btn-whatsapp {
       display: inline-block;
-      background-color: #25D366;
+      background-color: #25D366; /* Verde WhatsApp */
       color: white;
       text-decoration: none;
       padding: 11px 28px;
@@ -92,7 +92,7 @@
       font-size: 1em;
       box-shadow: 0 5px 12px rgba(37, 211, 102, 0.4);
       transition: all 0.3s ease;
-      margin-right: 12px;
+      margin-right: 10px; /* Espacio entre botones */
       cursor: pointer;
       border: none;
       font-family: inherit;
@@ -101,6 +101,26 @@
       background-color: #1ebe57;
       transform: scale(1.05);
       box-shadow: 0 7px 16px rgba(37, 211, 102, 0.6);
+    }
+     .btn-apology-option { /* Estilo específico para el botón "No es suficiente" dentro del popup */
+      display: inline-block;
+      background-color: #e91e63; /* Rosa/Rojo para esta opción */
+      color: white;
+      text-decoration: none;
+      padding: 11px 28px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 1em;
+      box-shadow: 0 5px 12px rgba(233, 30, 99, 0.4);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+    }
+    .btn-apology-option:hover {
+      background-color: #c2185b;
+      transform: scale(1.05);
+      box-shadow: 0 7px 16px rgba(233, 30, 99, 0.6);
     }
     .btn-atardecer {
       display: block;
@@ -137,174 +157,119 @@
       border-top: 1px solid #ddd;
       font-style: italic;
     }
-    /* Popup carta romántica */
-    .popup-message {
+    .popup-message { /* Base para popups */
       display: none;
       position: fixed;
       top: 50%;
       left: 50%;
-      width: 320px;
+      width: 340px; /* Un poco más ancho para acomodar botones */
       max-width: 90vw;
+      border-radius: 20px;
+      padding: 2em;
+      font-weight: 600;
+      text-align: center;
+      transform: translate(-50%, -50%);
+      z-index: 1100;
+      animation: popupFadeIn 0.5s ease forwards;
+    }
+    #cartaPopup { /* Popup carta romántica */
       background: #fff0f6;
       border: 3px solid #e91e63;
       color: #c2185b;
-      border-radius: 20px;
       box-shadow: 0 10px 30px rgba(233,30,99,0.6);
-      padding: 2em;
-      font-size: 1.2em;
-      font-weight: 600;
-      text-align: center;
       font-family: 'Dancing Script', cursive;
-      transform: translate(-50%, -50%);
-      z-index: 1100;
-      animation: popupFadeIn 0.5s ease forwards;
+      font-size: 1.2em;
     }
-    @keyframes popupFadeIn {
-      from {
-        opacity: 0;
-        transform: translate(-50%, -60%) scale(0.8);
-      }
-      to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-      }
-    }
-    
-    /* Animación de confeti y estrellas */
-    .confetti-container {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 9999;
-      overflow: hidden;
-    }
-    
-    .confetti {
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      opacity: 0;
-      animation: confetti-fall 5s linear forwards;
-    }
-    
-    .star {
-      position: absolute;
-      width: 18px;
-      height: 18px;
-      background: gold;
-      clip-path: polygon(
-        50% 0%, 61% 35%, 98% 35%, 68% 57%, 
-        79% 91%, 50% 70%, 21% 91%, 32% 57%, 
-        2% 35%, 39% 35%
-      );
-      opacity: 0;
-      animation: star-fall 4s linear forwards;
-    }
-    
-    @keyframes confetti-fall {
-      0% {
-        transform: translateY(-100px) rotate(0deg) rotateY(0);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(100vh) rotate(360deg) rotateY(720deg);
-        opacity: 0;
-      }
-    }
-    
-    @keyframes star-fall {
-      0% {
-        transform: translateY(-100px) rotate(0deg) scale(0.5);
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-        transform: translateY(0) rotate(180deg) scale(1);
-      }
-      100% {
-        transform: translateY(100vh) rotate(720deg) scale(1);
-        opacity: 0;
-      }
-    }
-    
-    .close-btn {
-      background: #e91e63;
-      color: white;
-      border: none;
-      border-radius: 12px;
-      padding: 0.5em 1.5em;
-      cursor: pointer;
-      font-weight: 600;
-      font-family: 'Poppins', sans-serif;
-      margin-top: 1em;
-      transition: all 0.3s ease;
-    }
-    
-    .close-btn:hover {
-      background: #c2185b;
-      transform: scale(1.05);
-    }
-    
-    /* Botón de disculpa */
-    .btn-apology {
-      display: inline-block;
-      background-color: #FF9800;
-      color: white;
-      text-decoration: none;
-      padding: 11px 28px;
-      border-radius: 30px;
-      font-weight: 600;
-      font-size: 1em;
-      box-shadow: 0 5px 12px rgba(255, 152, 0, 0.4);
-      transition: all 0.3s ease;
-      margin-right: 12px;
-      cursor: pointer;
-      border: none;
-      font-family: inherit;
-      animation: pulse 2s infinite;
-    }
-    
-    .btn-apology:hover {
-      background-color: #F57C00;
-      transform: scale(1.05);
-      box-shadow: 0 7px 16px rgba(255, 152, 0, 0.6);
-    }
-    
-    @keyframes pulse {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.05);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
-    
-    /* Popup de disculpa */
-    .apology-popup {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      width: 320px;
-      max-width: 90vw;
+    #apologyPopup { /* Popup de disculpa */
       background: #fff8e1;
       border: 3px solid #FF9800;
       color: #E65100;
-      border-radius: 20px;
       box-shadow: 0 10px 30px rgba(255,152,0,0.6);
-      padding: 2em;
-      font-size: 1.1em;
-      font-weight: 600;
-      text-align: center;
-      transform: translate(-50%, -50%);
-      z-index: 1100;
-      animation: popupFadeIn 0.5s ease forwards;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.15em; /* Ajustado para el contenido y botones */
+    }
+     #floresPopup { /* Popup de flores */
+      background-color: #f8f4ff; 
+      border-color: #9c27b0; 
+      color: #7b1fa2;
+      box-shadow: 0 10px 30px rgba(156, 39, 176, 0.5);
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.2em;
+    }
+    @keyframes popupFadeIn {
+      from { opacity: 0; transform: translate(-50%, -60%) scale(0.8); }
+      to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+    .confetti-container {
+      position: fixed; width: 100%; height: 100%; top: 0; left: 0;
+      pointer-events: none; z-index: 10000; overflow: hidden;
+    }
+    .confetti {
+      position: absolute; width: 12px; height: 12px; opacity: 0;
+      animation: confetti-fall 5s linear forwards;
+    }
+    .star {
+      position: absolute; width: 18px; height: 18px; background: gold;
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+      opacity: 0; animation: star-fall 4s linear forwards;
+    }
+    @keyframes confetti-fall {
+      0% { transform: translateY(-100px) rotate(0deg) rotateY(0); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg) rotateY(720deg); opacity: 0; }
+    }
+    @keyframes star-fall {
+      0% { transform: translateY(-100px) rotate(0deg) scale(0.5); opacity: 0; }
+      10% { opacity: 1; transform: translateY(0) rotate(180deg) scale(1); }
+      100% { transform: translateY(100vh) rotate(720deg) scale(1); opacity: 0; }
+    }
+    .close-btn { /* Para botones de cerrar genéricos si se añaden */
+      background: #e91e63; color: white; border: none; border-radius: 12px;
+      padding: 0.5em 1.5em; cursor: pointer; font-weight: 600;
+      font-family: 'Poppins', sans-serif; margin-top: 1em; transition: all 0.3s ease;
+    }
+    .close-btn:hover { transform: scale(1.05); }
+    
+    /* Botón de disculpa principal (el de la cara enfadada) */
+    .btn-apology-main {
+      display: inline-block; background-color: #FF9800; color: white; text-decoration: none;
+      padding: 11px 28px; border-radius: 30px; font-weight: 600; font-size: 1em;
+      box-shadow: 0 5px 12px rgba(255, 152, 0, 0.4); transition: all 0.3s ease;
+      margin-right: 12px; cursor: pointer; border: none; font-family: inherit;
+      animation: pulse 2s infinite;
+    }
+    .btn-apology-main:hover {
+      background-color: #F57C00; transform: scale(1.05);
+      box-shadow: 0 7px 16px rgba(255, 152, 0, 0.6);
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); }
+    }
+    .flower {
+      position: absolute; opacity: 0; background-size: contain; background-repeat: no-repeat;
+      animation: flower-fall 6s linear forwards; pointer-events: none;
+      font-size: 24px; z-index: 10001;
+    }
+    @keyframes flower-fall {
+      0% { transform: translateY(-100px) rotate(0deg) scale(0.3); opacity: 0; }
+      10% { opacity: 1; transform: translateY(0) rotate(180deg) scale(1); }
+      100% { transform: translateY(100vh) rotate(720deg) scale(1.2); opacity: 0; }
+    }
+    .flower-bucket {
+      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+      width: 150px; height: 150px;
+      background: url('https://cdn.pixabay.com/photo/2017/01/10/03/06/flowers-1968358_640.png') no-repeat center center;
+      background-size: contain; z-index: 9999;
+      animation: bucket-appear 1s ease-out forwards;
+    }
+    @keyframes bucket-appear {
+      from { transform: translateX(-50%) translateY(100px) scale(0.5); opacity: 0; }
+      to { transform: translateX(-50%) translateY(0) scale(1); opacity: 1; }
+    }
+    #apologyOptionsContainer {
+        margin-top: 1.5em;
+        display: flex; /* Para alinear botones */
+        justify-content: center; /* Centrar botones */
+        gap: 10px; /* Espacio entre botones */
     }
   </style>
 </head>
@@ -313,9 +278,8 @@
   <div class="container">
     <p class="intro">Fati, este menú es solo una excusa para sacarte una sonrisa y arreglar la mala fama... ¿te animas a probarlo conmigo?</p>
     
-    <!-- Botón de disculpa especial -->
     <div style="text-align: center; margin-bottom: 2em;">
-      <button class="btn-apology" onclick="mostrarDisculpa()">⚠️ Click aquí si estás enfadada ⚠️</button>
+      <button class="btn-apology-main" onclick="mostrarPopupDisculpaConOpciones()">⚠️ Click aquí si estás enfadada ⚠️</button>
     </div>
     
     <div class="menu-section">
@@ -344,17 +308,15 @@
         </div>
       </div>
       
-      <!-- Botón Postre -->
       <div class="dish">
         <img src="https://mahalopoke.es/wp-content/uploads/2024/01/yogurt-frutas-mahalo-2048x2048.png" alt="Postre Romántico" />
         <div class="dish-content">
           <div class="dish-title">Postre Especial</div>
           <div class="dish-desc">Tus ojos y el atardecer… el final más dulce que se me ocurre.</div>
-          <button class="btn-whatsapp" onclick="lanzarMagia()">Disfrutar Postre</button>
+          <button class="btn-whatsapp" onclick="lanzarMagia('magic')">Disfrutar Postre</button>
         </div>
       </div>
 
-      <!-- Botón Mirada Hipnotizante -->
       <div class="dish">
         <img src="https://i.pinimg.com/736x/ff/40/f0/ff40f09b45db8ef8c417af16522214d6.jpg" alt="Mirada Hipnotizante" />
         <div class="dish-content">
@@ -369,39 +331,35 @@
     </a>
   </div>
 
-  <!-- Popup carta romántica -->
   <div id="cartaPopup" class="popup-message">
     <div style="font-size: 1.5em; margin-bottom: 0.5em;">✨ Para Fati ✨</div>
     <div style="margin-bottom: 1em;">
-     Tus ojos tienen esa magia que no se explica... solo se siente ✨💫
+      Tus ojos tienen esa magia que no se explica... solo se siente ✨💫
     <br><br>
     </div>
-    <button class="close-btn" onclick="cerrarCarta()">Cerrar</button>
+    <button class="close-btn" onclick="cerrarCarta()" style="background-color: #c2185b;">Cerrar</button>
   </div>
 
-  <!-- Popup de disculpa -->
-  <div id="apologyPopup" class="apology-popup">
+  <div id="apologyPopup" class="popup-message">
     <div style="font-size: 1.3em; margin-bottom: 0.5em;">🙏 Disculpa Oficial 🙏</div>
     <div style="margin-bottom: 1em;">
       Solo confundí tu nombre, no tus ojazos 👀✨... ¿aceptas mis disculpas con un poke?<br><br>
       Si me das otra oportunidad, prometo aprenderme tu nombre, tu postre favorito... y hasta tu horóscopo 😇<br><br>
     </div>
- <button class="close-btn" onclick="aceptarDisculpa()" style="background-color: #FF9800;">Aceptar disculpa</button>
+    <div id="apologyOptionsContainer">
+      <button class="btn-whatsapp" onclick="aceptarDisculpaDesdePopup()">Aceptar disculpa</button>
+      <button class="btn-apology-option" onclick="rechazarDisculpaMostrarFlores()">
+        No es suficiente
+      </button>
+    </div>
+  </div>
 
-<script>
-function aceptarDisculpa() {
-  // Cierra el popup de disculpa
-  cerrarDisculpa();
-  
-  // Abre WhatsApp con mensaje preescrito simplificado
-  window.open('https://wa.me/34617793247?text=✅%20Acepto%20tu%20disculpa%20Aimane%20😊', '_blank');
-}
-
-function cerrarDisculpa() {
-  const disculpa = document.getElementById('apologyPopup');
-  disculpa.style.display = 'none';
-}
-</script>
+  <div id="floresPopup" class="popup-message">
+    <div style="font-size: 1.5em; margin-bottom: 0.5em;">💐 Para ti 💐</div>
+    <div style="margin-bottom: 1em;">
+       Aquí tienes un intento para hacerte sonreir 🌸🌺🌷
+    </div>
+    <button class="close-btn" onclick="cerrarFlores()" style="background-color: #9c27b0;">Cerrar</button>
   </div>
 
   <div class="footer">
@@ -409,37 +367,98 @@ function cerrarDisculpa() {
   </div>
 
   <script>
+    // --- Funciones para la carta romántica ---
     function mostrarCarta() {
-      const carta = document.getElementById('cartaPopup');
-      carta.style.display = 'block';
+      document.getElementById('cartaPopup').style.display = 'block';
     }
-    
     function cerrarCarta() {
-      const carta = document.getElementById('cartaPopup');
-      carta.style.display = 'none';
-    }
-    
-    function mostrarDisculpa() {
-      const disculpa = document.getElementById('apologyPopup');
-      disculpa.style.display = 'block';
-      lanzarMagia();
-    }
-    
-    function cerrarDisculpa() {
-      const disculpa = document.getElementById('apologyPopup');
-      disculpa.style.display = 'none';
+      document.getElementById('cartaPopup').style.display = 'none';
     }
 
-    function lanzarMagia() {
-      const container = document.createElement('div');
-      container.className = 'confetti-container';
+    // --- Funciones para la disculpa y opciones ---
+    function mostrarPopupDisculpaConOpciones() {
+      document.getElementById('apologyPopup').style.display = 'block';
+      lanzarMagia('magic'); // Lanza confeti y estrellas
+    }
+
+    function aceptarDisculpaDesdePopup() {
+      const apologyPopup = document.getElementById('apologyPopup');
+      if (apologyPopup) {
+        apologyPopup.style.display = 'none';
+      }
+      window.open('https://wa.me/34617793247?text=✅%20Acepto%20tu%20disculpa%20Aimane%20😊', '_blank');
+    }
+
+    function rechazarDisculpaMostrarFlores() {
+      const apologyPopup = document.getElementById('apologyPopup');
+      if (apologyPopup) {
+        apologyPopup.style.display = 'none';
+      }
+      mostrarFlores(); // Muestra el popup de flores y animaciones
+    }
+    
+    // --- Funciones para las flores ---
+    function mostrarFlores() {
+      document.getElementById('floresPopup').style.display = 'block';
+      lanzarFlores();
+      mostrarBucketFlores();
+    }
+    
+    function cerrarFlores() {
+      document.getElementById('floresPopup').style.display = 'none';
+      const bucket = document.querySelector('.flower-bucket');
+      if (bucket) bucket.remove();
+      const flowerContainer = document.querySelector('.confetti-container.flowers');
+      if (flowerContainer) flowerContainer.remove();
+    }
+    
+    function lanzarFlores() {
+      let container = document.querySelector('.confetti-container.flowers');
+      if (container && container.parentNode) container.remove();
+      container = document.createElement('div');
+      container.className = 'confetti-container flowers';
       document.body.appendChild(container);
       
-      const colors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4CAF50', '#8BC34A', '#CDDC39', '#FFEB3B', '#FFC107', '#FF9800', '#FF5722'];
+      const flowerTypes = ['🌸', '🌺', '🌷', '💐', '🌹', '🌻', '🌼', '🏵️'];
+      for (let i = 0; i < 70; i++) {
+        setTimeout(() => {
+          if (!document.body.contains(container)) return; 
+          const flower = document.createElement('div');
+          flower.className = 'flower';
+          flower.style.left = Math.random() * 100 + 'vw';
+          flower.style.animationDuration = (Math.random() * 4 + 4) + 's';
+          flower.style.animationDelay = (Math.random() * 1.5) + 's';
+          flower.textContent = flowerTypes[Math.floor(Math.random() * flowerTypes.length)];
+          flower.style.fontSize = (Math.random() * 25 + 20) + 'px'; 
+          container.appendChild(flower);
+        }, i * 80);
+      }
+      setTimeout(() => {
+        if (container && container.parentNode) container.remove();
+      }, 12000);
+    }
+    
+    function mostrarBucketFlores() {
+      const oldBucket = document.querySelector('.flower-bucket');
+      if (oldBucket) oldBucket.remove();
+      const bucket = document.createElement('div');
+      bucket.className = 'flower-bucket';
+      document.body.appendChild(bucket);
+    }
+
+    // --- Función de animación de confeti y estrellas ---
+    function lanzarMagia(type = 'magic') {
+      let containerSelector = '.confetti-container.' + type;
+      let container = document.querySelector(containerSelector);
+      if (container && container.parentNode) container.remove();
+      container = document.createElement('div');
+      container.className = 'confetti-container ' + type;
+      document.body.appendChild(container);
       
-      // Crear confeti
+      const colors = ['#f44336','#e91e63','#9c27b0','#673ab7','#3f51b5','#2196f3','#03a9f4','#00bcd4','#009688','#4CAF50','#8BC34A','#CDDC39','#FFEB3B','#FFC107','#FF9800','#FF5722'];
       for (let i = 0; i < 120; i++) {
         setTimeout(() => {
+          if (!document.body.contains(container)) return;
           const confetti = document.createElement('div');
           confetti.className = 'confetti';
           confetti.style.left = Math.random() * 100 + 'vw';
@@ -450,25 +469,20 @@ function cerrarDisculpa() {
           container.appendChild(confetti);
         }, i * 30);
       }
-      
-      // Crear estrellas
       for (let i = 0; i < 60; i++) {
         setTimeout(() => {
+          if (!document.body.contains(container)) return;
           const star = document.createElement('div');
           star.className = 'star';
           star.style.left = Math.random() * 100 + 'vw';
           star.style.animationDuration = (Math.random() * 3 + 3) + 's';
           star.style.animationDelay = (Math.random() * 0.5) + 's';
-          star.style.width = (Math.random() * 15 + 12) + 'px';
-          star.style.height = (Math.random() * 15 + 12) + 'px';
           container.appendChild(star);
         }, i * 50);
       }
-      
-      // Eliminar después de la animación
       setTimeout(() => {
-        document.body.removeChild(container);
-      }, 6000);
+        if (container && container.parentNode) container.remove();
+      }, 7000);
     }
   </script>
 </body>
